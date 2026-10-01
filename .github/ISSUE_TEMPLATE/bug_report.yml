@@ -1,0 +1,33 @@
+name: Сообщить об ошибке
+description: Проблема с определением трека или Discord Rich Presence
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Перед отправкой выберите в трее «Скопировать диагностику».
+  - type: textarea
+    id: description
+    attributes:
+      label: Что произошло?
+      description: Опишите ожидаемое и фактическое поведение.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Диагностика
+      description: Вставьте скопированную диагностику. Проверьте, что в ней нет личных данных.
+      render: text
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Источник
+      options:
+        - Приложение Яндекс Музыки
+        - Браузер
+        - Другое
+    validations:
+      required: true

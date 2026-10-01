@@ -1,0 +1,12 @@
+name: Предложить функцию
+description: Идея для развития YandexMusicRPC
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Идея
+      description: Какую проблему решает функция и как она должна работать?
+    validations:
+      required: true

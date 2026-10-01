@@ -1,0 +1,44 @@
+name: Build Windows
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install ".[dev]"
+      - run: pytest
+      - run: >
+          pyinstaller --noconfirm --clean --onefile --windowed
+          --name YandexMusicRPC --icon assets/icon.ico
+          --collect-all winsdk --collect-all pystray
+          main.py
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+      - name: Build installer
+        run: '& "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\YandexMusicRPC.iss'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: YandexMusicRPC-Windows
+          path: |
+            dist/YandexMusicRPC.exe
+            dist/YandexMusicRPC-Setup.exe
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/YandexMusicRPC.exe
+            dist/YandexMusicRPC-Setup.exe
