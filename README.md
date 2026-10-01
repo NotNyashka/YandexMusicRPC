@@ -2,6 +2,16 @@
 
 Приложение для Windows 10/11, которое показывает текущий трек Яндекс Музыки в Discord Rich Presence.
 
+## Как выглядит
+
+<p align="center">
+  <img src="docs/images/discord-profile.png" alt="Текущий трек Яндекс Музыки в профиле Discord" width="300">
+</p>
+
+<p align="center">
+  <img src="docs/images/discord-member-list.png" alt="Музыкальный статус в списке участников Discord" width="496">
+</p>
+
 ## Возможности
 
 - официальное приложение Яндекс Музыки и браузеры;
